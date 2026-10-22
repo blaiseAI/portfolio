@@ -115,7 +115,16 @@
   }
 
   /* ================= HERO ================= */
-  .hero{padding:72px var(--margin) 0;max-width:1240px;margin:0 auto;position:relative;}
+  .hero{max-width:1240px;margin:0 auto;padding:40px var(--margin) 0;position:relative;}
+  .hero-top{
+    position:relative;
+    padding:72px clamp(24px,4vw,56px) 64px;
+    border-radius:26px;
+    background-image:url('assets/img/hero-dither.jpg');
+    background-size:cover;
+    background-position:center;
+    overflow:hidden;
+  }
   .hero h1{font-size:var(--step-head);max-width:14ch;opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease;}
   .hero .sub{margin-top:22px;font-size:var(--step-lead);color:var(--muted);max-width:46ch;opacity:0;transform:translateY(14px);transition:opacity .6s ease .1s, transform .6s ease .1s;}
   body.loaded .hero h1, body.loaded .hero .sub{opacity:1;transform:translateY(0);}
@@ -267,11 +276,13 @@
 <main>
 
   <section class="hero" id="top">
-    <div class="doodle" id="heroStar" style="width:46px;height:46px;top:-18px;right:6%;" aria-hidden="true">
-      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M24 4 L27 18 L41 21 L27 24 L24 38 L21 24 L7 21 L21 18 Z"/></svg>
+    <div class="hero-top">
+      <div class="doodle" id="heroStar" style="width:46px;height:46px;top:-18px;right:6%;" aria-hidden="true">
+        <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M24 4 L27 18 L41 21 L27 24 L24 38 L21 24 L7 21 L21 18 Z"/></svg>
+      </div>
+      <h1 class="reveal">I build small.<br/>On purpose.</h1>
+      <p class="sub reveal">Five shipped things: a notebook, a hymnal, a kids' app, a prayer notch, a map of a continent's harvest. Not a startup. Just things that were needed.</p>
     </div>
-    <h1 class="reveal">I build small.<br/>On purpose.</h1>
-    <p class="sub reveal">Five shipped things: a notebook, a hymnal, a kids' app, a prayer notch, a map of a continent's harvest. Not a startup. Just things that were needed.</p>
 
     <div class="hero-grid">
       <div class="card bio reveal">
