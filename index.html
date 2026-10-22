@@ -181,21 +181,30 @@
   .work h2{font-size:var(--step-head);text-align:center;}
   .work .lede{text-align:center;color:var(--muted);font-size:var(--step-lead);max-width:52ch;margin:18px auto 0;}
 
-  .scatter{margin-top:72px;display:flex;flex-wrap:wrap;justify-content:center;gap:28px 24px;position:relative;}
-  .piece{background:#fff;padding:12px 12px 20px;border-radius:4px;flex:0 1 196px;}
-  .piece:nth-child(1){transform:rotate(-4deg);margin-top:10px;}
-  .piece:nth-child(2){transform:rotate(3deg);margin-top:40px;}
-  .piece:nth-child(3){transform:rotate(-2deg);}
-  .piece:nth-child(4){transform:rotate(5deg);margin-top:26px;}
-  .piece:nth-child(5){transform:rotate(-3deg);margin-top:16px;}
-  .piece img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:1px;}
-  .piece figcaption{font-family:var(--f-hand);font-size:var(--step-hand-lg);text-align:center;margin-top:12px;line-height:1.15;}
-  .piece .meta{margin-top:10px;font-size:var(--step-small);color:var(--muted);text-align:center;line-height:1.5;}
-  .piece .meta a{text-decoration:underline;text-decoration-color:#c9bfa9;text-underline-offset:2px;}
-  .piece .status{display:block;margin-top:2px;color:var(--ink);font-weight:500;}
-
-  .piece > a{display:block;}
-  @media (max-width:560px){.piece{transform:none !important;margin-top:0 !important;flex:0 1 280px;}}
+  /* index of the five: equal cards, taped down, straighten on hover */
+  .scatter{margin-top:64px;display:flex;flex-wrap:wrap;justify-content:center;gap:36px 26px;}
+  .piece{
+    --tape:#d7ecd2;
+    position:relative;display:flex;flex-direction:column;flex:0 1 200px;
+    background:#fff;padding:12px 12px 18px;border-radius:4px;text-decoration:none;color:var(--ink);
+    box-shadow:0 1px 2px rgba(28,36,32,.06),0 14px 28px -18px rgba(28,36,32,.35);
+  }
+  .piece::before{
+    content:"";position:absolute;top:-11px;left:50%;width:74px;height:22px;
+    transform:translateX(-50%) rotate(-3deg);background:var(--tape);opacity:.85;border-radius:2px;
+  }
+  .piece:nth-child(1){--r:-2.5deg;--tape:#cdeae4;}
+  .piece:nth-child(2){--r:1.5deg;--tape:#f6d4c6;}
+  .piece:nth-child(3){--r:-1deg;--tape:#f6e3ab;}
+  .piece:nth-child(4){--r:2deg;--tape:#cfe0ff;}
+  .piece:nth-child(5){--r:-1.5deg;--tape:#d7ecd2;}
+  .piece.reveal.is-visible{transition:opacity .6s ease, transform .35s ease, box-shadow .35s ease;}
+  .piece.reveal.is-visible:hover,.piece.reveal.is-visible:focus-visible{transform:translateY(-6px) rotate(0deg);box-shadow:0 1px 2px rgba(28,36,32,.06),0 22px 36px -18px rgba(28,36,32,.4);}
+  .piece img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:2px;outline:1px solid rgba(28,36,32,.08);outline-offset:-1px;}
+  .piece .hand{font-family:var(--f-hand);font-size:var(--step-hand-lg);text-align:center;margin-top:12px;line-height:1.15;}
+  .piece .name{margin-top:auto;padding-top:12px;text-align:center;font-size:var(--step-small);font-weight:600;}
+  .piece .status{align-self:center;margin-top:6px;font-size:.78rem;font-weight:500;color:var(--ink);background:var(--card-2);border-radius:999px;padding:3px 11px;white-space:nowrap;}
+  @media (max-width:560px){.piece{flex:0 1 calc(50% - 13px);}}
 
   /* ---- Up close: one block per product, real screens on dithered plates ---- */
   .cases{margin-top:120px;display:flex;flex-direction:column;gap:96px;}
@@ -369,31 +378,36 @@
     <p class="lede reveal">Five real things, in real use, not mockups.</p>
 
     <div class="scatter">
-      <figure class="piece reveal">
-        <a href="#case-familyhub"><img src="assets/img/familyhub.jpg" alt="Family Hub's capture bar turning typed lines into a todo, a shopping item and a bill." loading="lazy" /></a>
-        <figcaption>the notebook that<br/>never gets lost</figcaption>
-        <p class="meta"><a href="https://web-qa-754d.up.railway.app/" target="_blank" rel="noopener">Family Hub</a><span class="status">Rails, Hotwire &middot; In QA</span></p>
-      </figure>
-      <figure class="piece reveal">
-        <a href="#case-hymnal"><img src="assets/img/hymnal.jpg" alt="The Hymnal's searchable list of numbered hymns in Kinyarwanda." loading="lazy" /></a>
-        <figcaption>500 hymns, half a<br/>world from home</figcaption>
-        <p class="meta"><a href="https://sda-kinyarwanda-hymnal.vercel.app/" target="_blank" rel="noopener">SDA Kinyarwanda Hymnal</a><span class="status">iOS, Android, web &middot; 25.7K+ downloads</span></p>
-      </figure>
-      <figure class="piece reveal">
-        <a href="#case-littlelight"><img src="assets/img/littlelight.jpg" alt="Pip the lamb, Little Light's guide, in an illustrated meadow." loading="lazy" /></a>
-        <figcaption>a lamb named Pip</figcaption>
-        <p class="meta"><a href="https://littlelight.kids/" target="_blank" rel="noopener">Little Light</a><span class="status">Ages 5&ndash;7 &middot; Live</span></p>
-      </figure>
-      <figure class="piece reveal">
-        <a href="#case-selah"><img src="assets/img/selah-polaroid.jpg" alt="Selah's hero: a dusk mountain ridge behind the wordmark Selah." loading="lazy" /></a>
-        <figcaption>pray before thirty<br/>minutes pass</figcaption>
-        <p class="meta"><a href="https://selah.duseb.pro/" target="_blank" rel="noopener">Selah</a><span class="status">Native macOS &middot; Mac App Store</span></p>
-      </figure>
-      <figure class="piece reveal">
-        <a href="#case-afrixplorer"><img src="assets/img/afrixplorer.jpg" alt="Afrixplorer's overview screen: crop production stats for 54 African countries." loading="lazy" /></a>
-        <figcaption>the harvest,<br/>mapped</figcaption>
-        <p class="meta"><a href="https://afrixplorer.com/" target="_blank" rel="noopener">Afrixplorer</a><span class="status">Agricultural data &middot; Live</span></p>
-      </figure>
+      <a class="piece reveal" href="#case-familyhub">
+        <img src="assets/img/thumbs/familyhub.jpg" alt="Family Hub's landing page: the notebook that never gets lost." loading="lazy" />
+        <p class="hand">the notebook that<br/>never gets lost</p>
+        <p class="name">Family Hub</p>
+        <span class="status">In QA</span>
+      </a>
+      <a class="piece reveal" href="#case-hymnal">
+        <img src="assets/img/thumbs/hymnal.jpg" alt="The SDA Kinyarwanda Hymnal's home page." loading="lazy" />
+        <p class="hand">500 hymns, half a<br/>world from home</p>
+        <p class="name">SDA Kinyarwanda Hymnal</p>
+        <span class="status">25.7K+ downloads</span>
+      </a>
+      <a class="piece reveal" href="#case-littlelight">
+        <img src="assets/img/thumbs/littlelight.jpg" alt="Little Light's home page with Pip the lamb." loading="lazy" />
+        <p class="hand">a lamb<br/>named Pip</p>
+        <p class="name">Little Light</p>
+        <span class="status">Ages 5&ndash;7 &middot; Live</span>
+      </a>
+      <a class="piece reveal" href="#case-selah">
+        <img src="assets/img/thumbs/selah.jpg" alt="Selah's home page: Pray before thirty minutes pass." loading="lazy" />
+        <p class="hand">pray before thirty<br/>minutes pass</p>
+        <p class="name">Selah</p>
+        <span class="status">Mac App Store</span>
+      </a>
+      <a class="piece reveal" href="#case-afrixplorer">
+        <img src="assets/img/thumbs/afrixplorer.jpg" alt="Afrixplorer's overview of crop production across Africa." loading="lazy" />
+        <p class="hand">the harvest,<br/>mapped</p>
+        <p class="name">Afrixplorer</p>
+        <span class="status">54 countries &middot; Live</span>
+      </a>
     </div>
 
     <div class="cases">
