@@ -224,12 +224,9 @@
   .window .bar i{width:7px;height:7px;border-radius:50%;background:#d2d6c8;}
   .window .bar span{flex:1;text-align:center;font-size:10px;color:var(--muted);padding-right:24px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
   .window img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;}
-  .plate.phone{flex:0 0 240px;padding:26px 30px;}
-  .plate.phone img{position:relative;width:100%;border-radius:12px;box-shadow:0 22px 44px -22px rgba(28,36,32,.5);}
 
   @media (max-width:760px){
     .plate{flex-basis:86%;}
-    .plate.phone{flex-basis:62%;}
   }
 
   /* ---- Try it ---- */
@@ -378,9 +375,9 @@
         <p class="meta"><a href="https://web-qa-754d.up.railway.app/" target="_blank" rel="noopener">Family Hub</a><span class="status">Rails, Hotwire &middot; In QA</span></p>
       </figure>
       <figure class="piece reveal">
-        <a href="#case-hymnal"><img src="assets/img/hymnal.jpg" alt="The Hymnal app's hymn list in Kinyarwanda, with search and recently-viewed hymns." loading="lazy" /></a>
+        <a href="#case-hymnal"><img src="assets/img/hymnal.jpg" alt="The Hymnal's searchable list of numbered hymns in Kinyarwanda." loading="lazy" /></a>
         <figcaption>500 hymns, half a<br/>world from home</figcaption>
-        <p class="meta"><a href="https://apps.apple.com/ca/app/sda-kinyarwanda-hymnal/id6449814873" target="_blank" rel="noopener">SDA Kinyarwanda Hymnal</a><span class="status">App Store &middot; 4.9/5 (16)</span></p>
+        <p class="meta"><a href="https://sda-kinyarwanda-hymnal.vercel.app/" target="_blank" rel="noopener">SDA Kinyarwanda Hymnal</a><span class="status">iOS, Android, web &middot; 25.7K+ downloads</span></p>
       </figure>
       <figure class="piece reveal">
         <a href="#case-littlelight"><img src="assets/img/littlelight.jpg" alt="Pip the lamb, Little Light's guide, in an illustrated meadow." loading="lazy" /></a>
@@ -418,14 +415,14 @@
       <article class="case reveal" id="case-hymnal" style="--tint:#f6d4c6;">
         <div class="case-head">
           <img class="case-icon" src="assets/img/shots/icon-hymnal.png" alt="" />
-          <div><h3>SDA Kinyarwanda Hymnal</h3><p class="kicker">Indirimbo Zo Guhimbaza Imana, on iPhone and iPad</p></div>
+          <div><h3>SDA Kinyarwanda Hymnal</h3><p class="kicker">Indirimbo z&rsquo;Abadiventisiti, on iOS, Android and the web</p></div>
         </div>
-        <p class="case-body">The Seventh&#8209;day Adventist hymnal in Kinyarwanda, for people who used to carry the hard copy to church. Find a hymn by number or title, keep recently viewed and favourite hymns close, read the lyrics in a devotional layout, and send feedback on a hymn from inside the app.</p>
-        <p class="case-facts"><span>iOS &amp; iPadOS</span><span>App Store &middot; 4.9/5 from 16 ratings</span><a href="https://apps.apple.com/ca/app/sda-kinyarwanda-hymnal/id6449814873" target="_blank" rel="noopener">App Store &rarr;</a></p>
+        <p class="case-body">The complete Seventh&#8209;day Adventist hymnal, all 500 hymns in Kinyarwanda, for people who used to carry the hard copy to church. Search by number, title or a line of the lyrics, switch between Kinyarwanda and English, save favourites, and put a hymn up on screen with a slides mode for the service.</p>
+        <p class="case-facts"><span>iOS &middot; Android &middot; Web</span><span>25.7K+ downloads</span><a href="https://sda-kinyarwanda-hymnal.vercel.app/" target="_blank" rel="noopener">Visit &rarr;</a><a href="https://apps.apple.com/ca/app/sda-kinyarwanda-hymnal/id6449814873" target="_blank" rel="noopener">App Store &rarr;</a></p>
         <div class="plates">
-          <div class="plate phone"><img src="assets/img/shots/hymnal-1.jpg" alt="Browse and search: recently viewed hymns and the numbered hymn list." loading="lazy" /></div>
-          <div class="plate phone"><img src="assets/img/shots/hymnal-2.jpg" alt="Hymn details: the lyrics of hymn 1 with a menu to send feedback or share the hymn." loading="lazy" /></div>
-          <div class="plate phone"><img src="assets/img/shots/hymnal-3.jpg" alt="In-app feedback form with hymn number, title and message fields." loading="lazy" /></div>
+          <div class="plate"><div class="window"><div class="bar"><i></i><i></i><i></i><span>sda-kinyarwanda-hymnal.vercel.app</span></div><img src="assets/img/shots/hymnal-1.jpg" alt="The Hymnal's home page: the complete 500 SDA hymn book in Kinyarwanda, with App Store and Google Play badges and 25.7K+ downloads." loading="lazy" /></div></div>
+          <div class="plate"><div class="window"><div class="bar"><i></i><i></i><i></i><span>sda-kinyarwanda-hymnal.vercel.app</span></div><img src="assets/img/shots/hymnal-2.jpg" alt="Indirimbo z'Abadiventisiti: a search box over a grid of numbered hymns, 500 hymns in 2 languages." loading="lazy" /></div></div>
+          <div class="plate"><div class="window"><div class="bar"><i></i><i></i><i></i><span>sda-kinyarwanda-hymnal.vercel.app</span></div><img src="assets/img/shots/hymnal-3.jpg" alt="Hymn 1, Murinzi We, Vuz' Impanda, with Save to Favorites and Present / Slides buttons above the first verse." loading="lazy" /></div></div>
         </div>
       </article>
 
@@ -527,7 +524,7 @@
 
 <footer>
   <div class="mark reveal">Blaise</div>
-  <p class="credit reveal">Screens shown above are the real products, captured from their own live pages: <a href="https://web-qa-754d.up.railway.app/" target="_blank" rel="noopener">Family Hub</a>, <a href="https://apps.apple.com/ca/app/sda-kinyarwanda-hymnal/id6449814873" target="_blank" rel="noopener">SDA Kinyarwanda Hymnal</a>, <a href="https://littlelight.kids/" target="_blank" rel="noopener">Little Light</a>, <a href="https://selah.duseb.pro/" target="_blank" rel="noopener">Selah</a>, <a href="https://afrixplorer.com/" target="_blank" rel="noopener">Afrixplorer</a>.</p>
+  <p class="credit reveal">Screens shown above are the real products, captured from their own live pages: <a href="https://web-qa-754d.up.railway.app/" target="_blank" rel="noopener">Family Hub</a>, <a href="https://sda-kinyarwanda-hymnal.vercel.app/" target="_blank" rel="noopener">SDA Kinyarwanda Hymnal</a>, <a href="https://littlelight.kids/" target="_blank" rel="noopener">Little Light</a>, <a href="https://selah.duseb.pro/" target="_blank" rel="noopener">Selah</a>, <a href="https://afrixplorer.com/" target="_blank" rel="noopener">Afrixplorer</a>.</p>
 </footer>
 
 <script>
