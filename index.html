@@ -182,7 +182,7 @@
   .work .lede{text-align:center;color:var(--muted);font-size:var(--step-lead);max-width:52ch;margin:18px auto 0;}
 
   .scatter{margin-top:72px;display:flex;flex-wrap:wrap;justify-content:center;gap:28px 24px;position:relative;}
-  .piece{background:#fff;padding:12px 12px 20px;border-radius:4px;flex:0 1 230px;}
+  .piece{background:#fff;padding:12px 12px 20px;border-radius:4px;flex:0 1 196px;}
   .piece:nth-child(1){transform:rotate(-4deg);margin-top:10px;}
   .piece:nth-child(2){transform:rotate(3deg);margin-top:40px;}
   .piece:nth-child(3){transform:rotate(-2deg);}
@@ -194,7 +194,43 @@
   .piece .meta a{text-decoration:underline;text-decoration-color:#c9bfa9;text-underline-offset:2px;}
   .piece .status{display:block;margin-top:2px;color:var(--ink);font-weight:500;}
 
+  .piece > a{display:block;}
   @media (max-width:560px){.piece{transform:none !important;margin-top:0 !important;flex:0 1 280px;}}
+
+  /* ---- Up close: one block per product, real screens on dithered plates ---- */
+  .cases{margin-top:120px;display:flex;flex-direction:column;gap:96px;}
+  .cases-label{font-family:var(--f-hand);font-size:var(--step-hand-lg);color:var(--muted);text-align:center;margin-bottom:-48px;}
+  .case{--tint:#d7ecd2;scroll-margin-top:90px;}
+  .case-head{display:flex;align-items:center;gap:16px;}
+  .case-icon{width:52px;height:52px;border-radius:13px;flex-shrink:0;}
+  .case-icon.mono{display:flex;align-items:center;justify-content:center;background:var(--dark);color:#cdeae4;font-weight:600;font-size:1.05rem;letter-spacing:.02em;}
+  .case-head h3{font-size:var(--step-lead);}
+  .case-head .kicker{color:var(--muted);font-size:var(--step-body);margin-top:2px;}
+  .case-body{margin-top:18px;max-width:58ch;color:var(--muted);}
+  .case-facts{margin-top:14px;display:flex;flex-wrap:wrap;align-items:center;gap:8px 18px;font-size:var(--step-small);}
+  .case-facts span{color:var(--ink);font-weight:500;}
+  .case-facts a{color:var(--accent);text-decoration:underline;text-underline-offset:3px;}
+
+  .plates{margin-top:28px;display:flex;gap:18px;overflow-x:auto;scroll-snap-type:x mandatory;padding-bottom:12px;scrollbar-width:thin;}
+  .plate{
+    flex:0 0 calc(50% - 9px);scroll-snap-align:start;position:relative;overflow:hidden;
+    border-radius:16px;padding:clamp(18px,3.4vw,44px);
+    background:url('assets/img/hero-dither.jpg') center/cover;
+    display:flex;align-items:center;justify-content:center;
+  }
+  .plate::before{content:"";position:absolute;inset:0;background:var(--tint);mix-blend-mode:multiply;opacity:.6;}
+  .window{position:relative;width:100%;background:#fff;border-radius:8px;overflow:hidden;box-shadow:0 22px 44px -22px rgba(28,36,32,.5),0 0 0 1px rgba(28,36,32,.08);}
+  .window .bar{height:22px;display:flex;align-items:center;gap:5px;padding:0 9px;background:#f1f2ec;border-bottom:1px solid rgba(28,36,32,.08);}
+  .window .bar i{width:7px;height:7px;border-radius:50%;background:#d2d6c8;}
+  .window .bar span{flex:1;text-align:center;font-size:10px;color:var(--muted);padding-right:24px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis;}
+  .window img{width:100%;aspect-ratio:16/10;object-fit:cover;object-position:top;}
+  .plate.phone{flex:0 0 240px;padding:26px 30px;}
+  .plate.phone img{position:relative;width:100%;border-radius:12px;box-shadow:0 22px 44px -22px rgba(28,36,32,.5);}
+
+  @media (max-width:760px){
+    .plate{flex-basis:86%;}
+    .plate.phone{flex-basis:62%;}
+  }
 
   /* ---- Try it ---- */
   .tryit{
@@ -337,30 +373,102 @@
 
     <div class="scatter">
       <figure class="piece reveal">
-        <img src="assets/img/familyhub.jpg" alt="Family Hub's capture bar turning typed lines into a todo, a shopping item and a bill." loading="lazy" />
+        <a href="#case-familyhub"><img src="assets/img/familyhub.jpg" alt="Family Hub's capture bar turning typed lines into a todo, a shopping item and a bill." loading="lazy" /></a>
         <figcaption>the notebook that<br/>never gets lost</figcaption>
         <p class="meta"><a href="https://web-qa-754d.up.railway.app/" target="_blank" rel="noopener">Family Hub</a><span class="status">Rails, Hotwire &middot; In QA</span></p>
       </figure>
       <figure class="piece reveal">
-        <img src="assets/img/hymnal.jpg" alt="The Hymnal app's hymn list in Kinyarwanda, with search and recently-viewed hymns." loading="lazy" />
+        <a href="#case-hymnal"><img src="assets/img/hymnal.jpg" alt="The Hymnal app's hymn list in Kinyarwanda, with search and recently-viewed hymns." loading="lazy" /></a>
         <figcaption>500 hymns, half a<br/>world from home</figcaption>
         <p class="meta"><a href="https://apps.apple.com/ca/app/sda-kinyarwanda-hymnal/id6449814873" target="_blank" rel="noopener">SDA Kinyarwanda Hymnal</a><span class="status">App Store &middot; 4.9/5 (16)</span></p>
       </figure>
       <figure class="piece reveal">
-        <img src="assets/img/littlelight.jpg" alt="Pip the lamb, Little Light's guide, in an illustrated meadow." loading="lazy" />
+        <a href="#case-littlelight"><img src="assets/img/littlelight.jpg" alt="Pip the lamb, Little Light's guide, in an illustrated meadow." loading="lazy" /></a>
         <figcaption>a lamb named Pip</figcaption>
         <p class="meta"><a href="https://littlelight.kids/" target="_blank" rel="noopener">Little Light</a><span class="status">Ages 5&ndash;7 &middot; Live</span></p>
       </figure>
       <figure class="piece reveal">
-        <img src="assets/img/selah-polaroid.jpg" alt="Selah's hero: a dusk mountain ridge behind the wordmark Selah." loading="lazy" />
+        <a href="#case-selah"><img src="assets/img/selah-polaroid.jpg" alt="Selah's hero: a dusk mountain ridge behind the wordmark Selah." loading="lazy" /></a>
         <figcaption>pray before thirty<br/>minutes pass</figcaption>
         <p class="meta"><a href="https://selah.duseb.pro/" target="_blank" rel="noopener">Selah</a><span class="status">Native macOS &middot; Mac App Store</span></p>
       </figure>
       <figure class="piece reveal">
-        <img src="assets/img/afrixplorer.jpg" alt="Afrixplorer's overview screen: crop production stats for 54 African countries." loading="lazy" />
+        <a href="#case-afrixplorer"><img src="assets/img/afrixplorer.jpg" alt="Afrixplorer's overview screen: crop production stats for 54 African countries." loading="lazy" /></a>
         <figcaption>the harvest,<br/>mapped</figcaption>
         <p class="meta"><a href="https://afrixplorer.com/" target="_blank" rel="noopener">Afrixplorer</a><span class="status">Agricultural data &middot; Live</span></p>
       </figure>
+    </div>
+
+    <div class="cases">
+      <p class="cases-label reveal">a closer look</p>
+
+      <article class="case reveal" id="case-familyhub" style="--tint:#cdeae4;">
+        <div class="case-head">
+          <span class="case-icon mono" aria-hidden="true">FH</span>
+          <div><h3>Family Hub</h3><p class="kicker">A shared notebook for a household</p></div>
+        </div>
+        <p class="case-body">Todos, shopping, notes, meals, bills and a house log in one place instead of six notebooks and a drawer. One capture bar on every screen reads plain sentences: &ldquo;Nursery $420 due 12 Aug&rdquo; becomes a bill, &ldquo;Milk 2 &times; 2L&rdquo; goes on the shopping list. Everyone in the household sees the same notebook, with who ticked what.</p>
+        <p class="case-facts"><span>Rails 8 &middot; Hotwire &middot; Action Text &middot; SQLite &middot; Railway</span><span>In QA</span><a href="https://web-qa-754d.up.railway.app/" target="_blank" rel="noopener">Visit &rarr;</a></p>
+        <div class="plates">
+          <div class="plate"><div class="window"><div class="bar"><i></i><i></i><i></i><span>Family Hub</span></div><img src="assets/img/shots/familyhub-1.jpg" alt="Family Hub's landing page: the notebook that never gets lost, with typed lines parsed into a todo, a shopping item, a bill and a house log entry." loading="lazy" /></div></div>
+          <div class="plate"><div class="window"><div class="bar"><i></i><i></i><i></i><span>Family Hub</span></div><img src="assets/img/shots/familyhub-2.jpg" alt="Family Hub's eight screens, Agenda, Todos, Shopping, Notes, Reminders, Meals, Bills and House, each with a one-line description." loading="lazy" /></div></div>
+        </div>
+      </article>
+
+      <article class="case reveal" id="case-hymnal" style="--tint:#f6d4c6;">
+        <div class="case-head">
+          <img class="case-icon" src="assets/img/shots/icon-hymnal.png" alt="" />
+          <div><h3>SDA Kinyarwanda Hymnal</h3><p class="kicker">Indirimbo Zo Guhimbaza Imana, on iPhone and iPad</p></div>
+        </div>
+        <p class="case-body">The Seventh&#8209;day Adventist hymnal in Kinyarwanda, for people who used to carry the hard copy to church. Find a hymn by number or title, keep recently viewed and favourite hymns close, read the lyrics in a devotional layout, and send feedback on a hymn from inside the app.</p>
+        <p class="case-facts"><span>iOS &amp; iPadOS</span><span>App Store &middot; 4.9/5 from 16 ratings</span><a href="https://apps.apple.com/ca/app/sda-kinyarwanda-hymnal/id6449814873" target="_blank" rel="noopener">App Store &rarr;</a></p>
+        <div class="plates">
+          <div class="plate phone"><img src="assets/img/shots/hymnal-1.jpg" alt="Browse and search: recently viewed hymns and the numbered hymn list." loading="lazy" /></div>
+          <div class="plate phone"><img src="assets/img/shots/hymnal-2.jpg" alt="Hymn details: the lyrics of hymn 1 with a menu to send feedback or share the hymn." loading="lazy" /></div>
+          <div class="plate phone"><img src="assets/img/shots/hymnal-3.jpg" alt="In-app feedback form with hymn number, title and message fields." loading="lazy" /></div>
+        </div>
+      </article>
+
+      <article class="case reveal" id="case-littlelight" style="--tint:#f6e3ab;">
+        <div class="case-head">
+          <img class="case-icon" src="assets/img/shots/icon-littlelight.png" alt="" />
+          <div><h3>Little Light</h3><p class="kicker">Bible stories and little games for ages 5&ndash;7</p></div>
+        </div>
+        <p class="case-body">Five minutes of wonder at a time, with Pip the lamb as guide. Twenty&#8209;one stories across a three&#8209;week journey: hear the story, play a small game like building a verse one word at a time, and light a star when it&rsquo;s done.</p>
+        <p class="case-facts"><span>Web</span><span>Live</span><a href="https://littlelight.kids/" target="_blank" rel="noopener">Visit &rarr;</a></p>
+        <div class="plates">
+          <div class="plate"><div class="window"><div class="bar"><i></i><i></i><i></i><span>littlelight.kids</span></div><img src="assets/img/shots/littlelight-1.jpg" alt="Little Light's home page: Little stories, big light, with Pip the lamb on a meadow path." loading="lazy" /></div></div>
+          <div class="plate"><div class="window"><div class="bar"><i></i><i></i><i></i><span>littlelight.kids</span></div><img src="assets/img/shots/littlelight-2.jpg" alt="The three-week journey: week one, In the beginning, with seven stories on a path from God makes the world to Bread from heaven." loading="lazy" /></div></div>
+          <div class="plate"><div class="window"><div class="bar"><i></i><i></i><i></i><span>littlelight.kids</span></div><img src="assets/img/shots/littlelight-3.jpg" alt="Can you build the verse: a game where kids tap the words of Psalm 23:1 in order." loading="lazy" /></div></div>
+        </div>
+      </article>
+
+      <article class="case reveal" id="case-selah" style="--tint:#cfe0ff;">
+        <div class="case-head">
+          <img class="case-icon" src="assets/img/shots/icon-selah.png" alt="" />
+          <div><h3>Selah</h3><p class="kicker">A prayer reminder that lives in the Mac&rsquo;s notch</p></div>
+        </div>
+        <p class="case-body">Every thirty minutes the notch opens to one line of Scripture and a Begin button. A gold arc follows your breath, then you say Amen and it folds away. No account, no reading plan, never steals key focus, and everything stays on the Mac.</p>
+        <p class="case-facts"><span>Swift &middot; macOS 14+</span><span>Mac App Store</span><a href="https://selah.duseb.pro/" target="_blank" rel="noopener">Visit &rarr;</a></p>
+        <div class="plates">
+          <div class="plate"><div class="window"><div class="bar"><i></i><i></i><i></i><span>selah.duseb.pro</span></div><img src="assets/img/shots/selah-1.jpg" alt="Selah's home page: Pray before thirty minutes pass, over a dusk mountain range." loading="lazy" /></div></div>
+          <div class="plate"><div class="window"><div class="bar"><i></i><i></i><i></i><span>selah.duseb.pro</span></div><img src="assets/img/shots/selah-2.jpg" alt="A Mac desktop with Selah open in the notch, showing Be still, and know that I am God with a Begin button." loading="lazy" /></div></div>
+          <div class="plate"><div class="window"><div class="bar"><i></i><i></i><i></i><span>selah.duseb.pro</span></div><img src="assets/img/shots/selah-3.jpg" alt="Selah's four states: lives in the notch, one verse when it's time, a breath then Amen, native and silent." loading="lazy" /></div></div>
+        </div>
+      </article>
+
+      <article class="case reveal" id="case-afrixplorer" style="--tint:#d7ecd2;">
+        <div class="case-head">
+          <img class="case-icon" src="assets/img/shots/icon-afrixplorer.png" alt="" />
+          <div><h3>Afrixplorer</h3><p class="kicker">Crop production data for 54 African countries</p></div>
+        </div>
+        <p class="case-body">Production, yield and trade data for 136 crops from 2010 to 2024, drawn from FAOSTAT, the World Bank and UN Comtrade. Explore by country or by crop, follow production trends and yield gaps, and rank country&ndash;crop opportunities on an investment leaderboard.</p>
+        <p class="case-facts"><span>Agricultural data</span><span>Live</span><a href="https://afrixplorer.com/" target="_blank" rel="noopener">Visit &rarr;</a></p>
+        <div class="plates">
+          <div class="plate"><div class="window"><div class="bar"><i></i><i></i><i></i><span>afrixplorer.com</span></div><img src="assets/img/shots/afrixplorer-1.jpg" alt="Afrixplorer's overview: top crops by volume, explore by country, explore by crop, and African agricultural market news." loading="lazy" /></div></div>
+          <div class="plate"><div class="window"><div class="bar"><i></i><i></i><i></i><span>afrixplorer.com</span></div><img src="assets/img/shots/afrixplorer-2.jpg" alt="The investment leaderboard: country and crop pairs ranked by score, with signal, growth and export columns." loading="lazy" /></div></div>
+        </div>
+      </article>
     </div>
 
     <div class="tryit reveal">
