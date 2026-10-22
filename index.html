@@ -1,0 +1,472 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Blaise Sebagabo · software, quietly</title>
+<base href="/portfolio/" />
+<meta name="description" content="Five shipped things: a household notebook, a hymnal of 500 Kinyarwanda hymns, a Bible-story app for kids, a notch that reminds you to pray, and an agricultural data platform for Africa. Built one at a time, because each was needed." />
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Fredoka:wght@400;500;600;700&family=Caveat:wght@500;600;700&display=swap" rel="stylesheet" />
+<style>
+  :root{
+    --bg:#f6f7f2;
+    --card:#eaecdf;
+    --card-2:#eef0e4;
+    --ink:#1c2420;
+    --muted:#5c655d;
+    --accent:#3461c9;
+    --accent-ink:#f6f7f2;
+    --dark:#1c2420;
+
+    --blue:#5b8def;
+    --green:#6fae6f;
+    --gold:#d9a62e;
+    --coral:#df7a56;
+    --teal:#3f9b8c;
+
+    --f-display:'Fredoka', ui-rounded, sans-serif;
+    --f-hand:'Caveat', cursive;
+
+    --step-small: clamp(0.8125rem, 0.79rem + 0.1vw, 0.9375rem);
+    --step-body: clamp(1.0625rem, 1rem + 0.25vw, 1.1875rem);
+    --step-lead: clamp(1.25rem, 1.05rem + 0.8vw, 1.625rem);
+    --step-heading: clamp(1.75rem, 1.4rem + 1.4vw, 2.5rem);
+    --step-head: clamp(2.4rem, 1.3rem + 4.4vw, 4.8rem);
+    --step-hand-lg: clamp(1.2rem, 1.1rem + 0.4vw, 1.4rem);
+    --step-hand-sm: 1.05rem;
+
+    --margin: clamp(20px, 4.5vw, 64px);
+    color-scheme: light;
+  }
+
+  *,*::before,*::after{box-sizing:border-box;margin:0;padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:var(--f-display);
+    background:var(--bg);
+    color:var(--ink);
+    font-size:var(--step-body);
+    line-height:1.55;
+    -webkit-font-smoothing:antialiased;
+    position:relative;
+    overflow-x:hidden;
+  }
+  /* dithered paper grain — SVG feTurbulence noise, tiled, multiplied over the ground */
+  body::before{
+    content:"";position:fixed;inset:0;z-index:0;pointer-events:none;
+    background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='180' height='180'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='2' stitchTiles='stitch'/%3E%3CfeColorMatrix type='matrix' values='0 0 0 0 0  0 0 0 0 0  0 0 0 0 0  0 0 0 0.5 0'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
+    mix-blend-mode:multiply;
+    opacity:.1;
+  }
+  main, header, footer{position:relative;z-index:1;}
+
+  img{display:block;max-width:100%;}
+  a{color:inherit;}
+  button{font:inherit;color:inherit;background:none;border:0;cursor:pointer;}
+  input{font:inherit;}
+  h1,h2,h3{font-weight:600;letter-spacing:-0.01em;line-height:1.08;}
+
+  :focus-visible{outline:2px solid var(--accent);outline-offset:3px;}
+  ::selection{background:var(--gold);color:var(--ink);}
+
+  @media (prefers-reduced-motion: reduce){
+    *{animation-duration:0.01ms !important;animation-iteration-count:1 !important;transition-duration:0.01ms !important;scroll-behavior:auto !important;}
+  }
+
+  .reveal{opacity:0;transform:translateY(20px) rotate(var(--r,0deg));transition:opacity .6s ease, transform .6s ease;}
+  .reveal.is-visible{opacity:1;transform:translateY(0) rotate(var(--r,0deg));}
+  @media (prefers-reduced-motion: reduce){.reveal{opacity:1 !important;transform:rotate(var(--r,0deg)) !important;}}
+
+  /* doodles */
+  .doodle{position:absolute;color:var(--ink);opacity:.55;pointer-events:none;}
+  #heroStar{opacity:0;transform:rotate(-24deg) scale(.6);transition:opacity .6s ease .32s, transform .6s ease .32s;}
+  body.loaded #heroStar{opacity:.55;transform:rotate(8deg) scale(1);}
+  @media (prefers-reduced-motion: reduce){#heroStar{opacity:.55;transform:rotate(8deg) scale(1);}}
+  .doodle svg{width:100%;height:100%;}
+
+  /* ================= NAV ================= */
+  .navwrap{position:sticky;top:16px;z-index:40;display:flex;justify-content:center;padding:0 var(--margin);}
+  nav.pill{
+    background:var(--dark);color:var(--bg);
+    border-radius:999px;
+    display:flex;align-items:center;gap:clamp(10px,2vw,22px);
+    padding:10px 10px 10px 22px;
+    box-shadow:none;
+  }
+  nav.pill .brand{font-size:var(--step-small);font-weight:600;white-space:nowrap;padding-right:6px;}
+  nav.pill a{font-size:var(--step-small);text-decoration:none;opacity:.82;padding:8px 6px;white-space:nowrap;}
+  nav.pill a:hover{opacity:1;}
+  nav.pill .cta{
+    background:var(--accent);color:var(--accent-ink);
+    border-radius:999px;padding:9px 18px;font-size:var(--step-small);font-weight:500;
+    text-decoration:none;white-space:nowrap;transition:transform .15s ease;
+  }
+  nav.pill .cta:hover{transform:scale(1.05);}
+
+  nav.pill .brand, nav.pill a, nav.pill .cta{opacity:0;transform:translateY(-8px);transition:opacity .5s ease, transform .5s ease;}
+  nav.pill a{transition-delay:.05s;}
+  nav.pill .cta{transition-delay:.1s;}
+  body.loaded nav.pill .brand, body.loaded nav.pill a{opacity:.82;transform:translateY(0);}
+  body.loaded nav.pill .cta{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){
+    nav.pill .brand, nav.pill a, nav.pill .cta{opacity:1;transform:none;}
+  }
+
+  /* ================= HERO ================= */
+  .hero{padding:72px var(--margin) 0;max-width:1240px;margin:0 auto;position:relative;}
+  .hero h1{font-size:var(--step-head);max-width:14ch;opacity:0;transform:translateY(14px);transition:opacity .6s ease, transform .6s ease;}
+  .hero .sub{margin-top:22px;font-size:var(--step-lead);color:var(--muted);max-width:46ch;opacity:0;transform:translateY(14px);transition:opacity .6s ease .1s, transform .6s ease .1s;}
+  body.loaded .hero h1, body.loaded .hero .sub{opacity:1;transform:translateY(0);}
+  @media (prefers-reduced-motion: reduce){.hero h1,.hero .sub{opacity:1;transform:none;}}
+
+  .hero-grid{
+    margin-top:56px;display:grid;grid-template-columns:1fr 1fr;gap:28px;
+  }
+  .card{background:var(--card);border-radius:18px;padding:34px;}
+  .bio p{font-size:var(--step-body);color:var(--ink);}
+  .bio p + p{margin-top:1em;}
+
+  .photos{position:relative;min-height:320px;}
+  .polaroid{
+    position:absolute;background:#fff;padding:10px 10px 44px;border-radius:3px;
+    width:200px;
+  }
+  .polaroid img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:1px;}
+  .polaroid figcaption{font-family:var(--f-hand);font-size:var(--step-hand-lg);color:var(--ink);text-align:center;margin-top:10px;line-height:1.15;}
+  .p1{top:6px;left:8%;transform:translateY(16px) rotate(-7deg);z-index:2;opacity:0;transition:opacity .6s ease .1s, transform .6s ease .1s;}
+  .p2{top:70px;right:4%;transform:translateY(16px) rotate(6deg);z-index:1;opacity:0;transition:opacity .6s ease .22s, transform .6s ease .22s;}
+  body.loaded .p1{opacity:1;transform:translateY(0) rotate(-7deg);}
+  body.loaded .p2{opacity:1;transform:translateY(0) rotate(6deg);}
+  @media (prefers-reduced-motion: reduce){
+    .p1,.p2{opacity:1;transform:rotate(-7deg);}
+    .p2{transform:rotate(6deg);}
+  }
+
+  @media (max-width:900px){
+    .hero-grid{grid-template-columns:1fr;}
+    .photos{min-height:280px;}
+  }
+
+  /* ================= SECOND ROW ================= */
+  .row2{max-width:1240px;margin:28px auto 0;padding:0 var(--margin);display:grid;grid-template-columns:1.1fr 1fr;gap:28px;}
+  .row2 .card p{color:var(--muted);font-size:var(--step-body);}
+  .row2 .card p + p{margin-top:1em;}
+  .stickers{display:flex;flex-wrap:wrap;gap:12px;align-items:center;justify-content:center;min-height:160px;}
+  .sticker{
+    font-family:var(--f-hand);font-weight:600;font-size:var(--step-hand-lg);
+    padding:7px 18px 9px;border-radius:999px;color:var(--ink);
+    display:inline-block;
+  }
+  .s-blue{background:#cfe0ff;transform:rotate(-4deg);}
+  .s-green{background:#d7ecd2;transform:rotate(3deg);}
+  .s-gold{background:#f6e3ab;transform:rotate(-2deg);}
+  .s-coral{background:#f6d4c6;transform:rotate(5deg);}
+  .s-teal{background:#cdeae4;transform:rotate(-3deg);}
+
+  @media (max-width:900px){.row2{grid-template-columns:1fr;}}
+
+  /* ================= WORK ================= */
+  .work{max-width:1240px;margin:104px auto 0;padding:0 var(--margin);position:relative;}
+  .work h2{font-size:var(--step-head);text-align:center;}
+  .work .lede{text-align:center;color:var(--muted);font-size:var(--step-lead);max-width:52ch;margin:18px auto 0;}
+
+  .scatter{margin-top:72px;display:flex;flex-wrap:wrap;justify-content:center;gap:28px 24px;position:relative;}
+  .piece{background:#fff;padding:12px 12px 20px;border-radius:4px;flex:0 1 230px;}
+  .piece:nth-child(1){transform:rotate(-4deg);margin-top:10px;}
+  .piece:nth-child(2){transform:rotate(3deg);margin-top:40px;}
+  .piece:nth-child(3){transform:rotate(-2deg);}
+  .piece:nth-child(4){transform:rotate(5deg);margin-top:26px;}
+  .piece:nth-child(5){transform:rotate(-3deg);margin-top:16px;}
+  .piece img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:1px;}
+  .piece figcaption{font-family:var(--f-hand);font-size:var(--step-hand-lg);text-align:center;margin-top:12px;line-height:1.15;}
+  .piece .meta{margin-top:10px;font-size:var(--step-small);color:var(--muted);text-align:center;line-height:1.5;}
+  .piece .meta a{text-decoration:underline;text-decoration-color:#c9bfa9;text-underline-offset:2px;}
+  .piece .status{display:block;margin-top:2px;color:var(--ink);font-weight:500;}
+
+  @media (max-width:560px){.piece{transform:none !important;margin-top:0 !important;flex:0 1 280px;}}
+
+  /* ---- Try it ---- */
+  .tryit{
+    max-width:720px;margin:88px auto 0;background:var(--dark);color:var(--bg);
+    padding:48px clamp(24px,4vw,56px);border-radius:20px;position:relative;
+    display:grid;grid-template-columns:1fr auto;gap:36px;align-items:center;
+    transform:rotate(-1.2deg);
+  }
+  .tryit-text p.hand{font-family:var(--f-hand);font-size:var(--step-hand-lg);color:var(--gold);margin-bottom:.3em;}
+  .tryit-text h3{font-size:var(--step-lead);font-weight:600;margin-bottom:.4em;}
+  .tryit-text p.desc{color:#cfc5b2;font-size:var(--step-small);max-width:38ch;}
+  .arc-wrap{position:relative;width:130px;height:130px;flex-shrink:0;}
+  .arc-wrap svg{width:100%;height:100%;transform:rotate(-90deg);}
+  .arc-wrap circle{fill:none;stroke-width:3;}
+  .arc-track{stroke:rgba(255,255,255,.14);}
+  .arc-fill{stroke:var(--gold);stroke-linecap:round;stroke-dasharray:345.6;stroke-dashoffset:345.6;transition:stroke-dashoffset 6s linear;}
+  .arc-wrap.breathing .arc-fill{stroke-dashoffset:0;}
+  .arc-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;gap:6px;padding:10px;}
+  .arc-verse{font-family:var(--f-hand);font-size:var(--step-hand-sm);line-height:1.25;color:var(--bg);display:none;}
+  .arc-wrap.breathing .arc-verse{display:block;}
+  .arc-btn{font-family:var(--f-display);font-weight:500;font-size:var(--step-small);color:var(--ink);background:var(--gold);border-radius:999px;padding:.55em 1.3em;transition:transform .15s ease;}
+  .arc-btn:hover{transform:scale(1.08);}
+  .arc-wrap.breathing .arc-btn{display:none;}
+  .arc-amen{display:none;font-family:var(--f-hand);font-size:var(--step-hand-sm);color:var(--gold);margin-top:4px;}
+  .arc-wrap.breathing .arc-amen{display:inline;}
+
+  @media (max-width:700px){.tryit{grid-template-columns:1fr;text-align:center;transform:none;}.arc-wrap{margin:0 auto;}}
+
+  /* ================= ABOUT FACTS ================= */
+  .about{max-width:1240px;margin:104px auto 0;padding:0 var(--margin);}
+  .about-row{display:grid;grid-template-columns:200px 1fr;gap:40px;}
+  .facts{display:flex;flex-direction:column;gap:16px;}
+  .facts dt{font-size:var(--step-small);color:var(--muted);}
+  .facts dd{font-size:var(--step-small);color:var(--ink);margin-top:2px;font-weight:500;}
+  .about-para{font-size:var(--step-lead);line-height:1.4;}
+  @media (max-width:780px){.about-row{grid-template-columns:1fr;gap:22px;}.facts{flex-direction:row;flex-wrap:wrap;gap:22px;}}
+
+  /* ================= CONTACT ================= */
+  .contact{max-width:760px;margin:120px auto 0;padding:72px var(--margin);text-align:center;background:var(--card);border-radius:28px;}
+  .contact h2{font-size:var(--step-heading);}
+  .contact h2 .soft{color:var(--muted);display:block;}
+  .contact form{margin-top:28px;position:relative;}
+  .contact input{
+    width:100%;height:62px;border-radius:999px;border:none;background:var(--bg);
+    padding:0 64px 0 26px;font-size:var(--step-body);color:var(--ink);font-family:var(--f-display);
+  }
+  .contact input:focus{outline:2px solid var(--accent);outline-offset:-2px;}
+  .contact .submit{position:absolute;right:7px;top:7px;width:48px;height:48px;border-radius:999px;background:var(--accent);color:var(--accent-ink);display:flex;align-items:center;justify-content:center;transition:transform .15s ease;}
+  .contact .submit:hover{transform:scale(1.06);}
+  .contact .submit:active{transform:scale(.94);}
+  .contact .hint{margin-top:16px;font-size:var(--step-small);color:var(--muted);}
+  .contact-facts{margin-top:56px;display:flex;justify-content:center;gap:40px;flex-wrap:wrap;}
+  .contact-facts div{text-align:left;}
+  .contact-facts dt{font-size:var(--step-small);color:var(--muted);}
+  .contact-facts dd{font-size:var(--step-body);margin-top:4px;}
+  .contact-facts a{text-decoration:underline;text-decoration-color:#c9bfa9;text-underline-offset:3px;}
+
+  /* ================= FOOTER ================= */
+  footer{padding:180px var(--margin) 56px;text-align:center;}
+  footer .mark{font-family:var(--f-hand);font-size:clamp(3rem,2.2rem + 6vw,8rem);color:var(--ink);line-height:1;}
+  footer .credit{margin-top:24px;font-size:var(--step-small);color:var(--muted);}
+  footer .credit a{text-decoration:underline;}
+
+  h2.section-title{font-size:var(--step-heading);}
+  section[id]{scroll-margin-top:90px;}
+</style>
+</head>
+<body>
+
+<div class="navwrap">
+  <nav class="pill">
+    <span class="brand">Blaise</span>
+    <a href="#work">Work</a>
+    <a href="#about">About</a>
+    <a class="cta" href="#contact">Say hi</a>
+  </nav>
+</div>
+
+<main>
+
+  <section class="hero" id="top">
+    <div class="doodle" id="heroStar" style="width:46px;height:46px;top:-18px;right:6%;" aria-hidden="true">
+      <svg viewBox="0 0 48 48" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M24 4 L27 18 L41 21 L27 24 L24 38 L21 24 L7 21 L21 18 Z"/></svg>
+    </div>
+    <h1 class="reveal">I build small.<br/>On purpose.</h1>
+    <p class="sub reveal">Five shipped things: a notebook, a hymnal, a kids' app, a prayer notch, a map of a continent's harvest. Not a startup. Just things that were needed.</p>
+
+    <div class="hero-grid">
+      <div class="card bio reveal">
+        <p>I'm Blaise. I grew up Seventh&#8209;day Adventist, which teaches you to notice small, overlooked needs &mdash; a hymnal nobody had digitized, a prayer habit that kept slipping through the day.</p>
+        <p>So that's what I build. Quiet, specific software for people I actually know: my own family, my own church community, my own prayer life, kids who like Bible stories before bed.</p>
+        <p>Five are shipped right now, across the web, iOS, and native macOS.</p>
+      </div>
+      <div class="photos reveal">
+        <div class="doodle" style="width:30px;height:30px;top:40px;left:36%;transform:rotate(-10deg);" aria-hidden="true">
+          <svg viewBox="0 0 32 32" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M16 4v24M4 16h24"/></svg>
+        </div>
+        <figure class="polaroid p1">
+          <img src="assets/img/selah-polaroid.jpg" alt="Selah's hero: a dusk mountain ridge behind the wordmark Selah." loading="lazy" />
+          <figcaption>a pause, every<br/>thirty minutes</figcaption>
+        </figure>
+        <figure class="polaroid p2">
+          <img src="assets/img/littlelight.jpg" alt="Pip the lamb, Little Light's guide, in an illustrated meadow." loading="lazy" />
+          <figcaption>a lamb named Pip</figcaption>
+        </figure>
+      </div>
+    </div>
+  </section>
+
+  <section class="row2">
+    <div class="card reveal">
+      <p>None of these were built to become a company. Each solved one actual problem for one actual person &mdash; so each looks different, because each need was different.</p>
+      <p>No account most people don't need. No dashboard to check daily. Each does one small thing, reliably, and gets out of the way.</p>
+    </div>
+    <div class="card reveal">
+      <div class="stickers">
+        <span class="sticker s-blue">Rails</span>
+        <span class="sticker s-green">Hotwire</span>
+        <span class="sticker s-gold">Swift</span>
+        <span class="sticker s-coral">SwiftUI</span>
+        <span class="sticker s-teal">SQL</span>
+        <span class="sticker s-gold">MongoDB</span>
+        <span class="sticker s-blue">Action Text</span>
+        <span class="sticker s-green">Railway</span>
+        <span class="sticker s-gold">App Store</span>
+        <span class="sticker s-coral">TypeScript</span>
+        <span class="sticker s-teal">React</span>
+        <span class="sticker s-blue">Flutter</span>
+        <span class="sticker s-green">Python</span>
+        <span class="sticker s-coral">Node</span>
+      </div>
+    </div>
+  </section>
+
+  <section class="work" id="work">
+    <h2 class="section-title reveal">What's shipped</h2>
+    <p class="lede reveal">Five real things, in real use, not mockups.</p>
+
+    <div class="scatter">
+      <figure class="piece reveal">
+        <img src="assets/img/familyhub.jpg" alt="Family Hub's capture bar turning typed lines into a todo, a shopping item and a bill." loading="lazy" />
+        <figcaption>the notebook that<br/>never gets lost</figcaption>
+        <p class="meta"><a href="https://web-qa-754d.up.railway.app/" target="_blank" rel="noopener">Family Hub</a><span class="status">Rails, Hotwire &middot; In QA</span></p>
+      </figure>
+      <figure class="piece reveal">
+        <img src="assets/img/hymnal.jpg" alt="The Hymnal app's hymn list in Kinyarwanda, with search and recently-viewed hymns." loading="lazy" />
+        <figcaption>500 hymns, half a<br/>world from home</figcaption>
+        <p class="meta"><a href="https://apps.apple.com/ca/app/sda-kinyarwanda-hymnal/id6449814873" target="_blank" rel="noopener">SDA Kinyarwanda Hymnal</a><span class="status">App Store &middot; 4.9/5 (16)</span></p>
+      </figure>
+      <figure class="piece reveal">
+        <img src="assets/img/littlelight.jpg" alt="Pip the lamb, Little Light's guide, in an illustrated meadow." loading="lazy" />
+        <figcaption>a lamb named Pip</figcaption>
+        <p class="meta"><a href="https://littlelight.kids/" target="_blank" rel="noopener">Little Light</a><span class="status">Ages 5&ndash;7 &middot; Live</span></p>
+      </figure>
+      <figure class="piece reveal">
+        <img src="assets/img/selah-polaroid.jpg" alt="Selah's hero: a dusk mountain ridge behind the wordmark Selah." loading="lazy" />
+        <figcaption>pray before thirty<br/>minutes pass</figcaption>
+        <p class="meta"><a href="https://selah.duseb.pro/" target="_blank" rel="noopener">Selah</a><span class="status">Native macOS &middot; Mac App Store</span></p>
+      </figure>
+      <figure class="piece reveal">
+        <img src="assets/img/afrixplorer.jpg" alt="Afrixplorer's overview screen: crop production stats for 54 African countries." loading="lazy" />
+        <figcaption>the harvest,<br/>mapped</figcaption>
+        <p class="meta"><a href="https://afrixplorer.com/" target="_blank" rel="noopener">Afrixplorer</a><span class="status">Agricultural data &middot; Live</span></p>
+      </figure>
+    </div>
+
+    <div class="tryit reveal">
+      <div class="doodle" style="width:34px;height:34px;top:-14px;left:-10px;color:var(--gold);opacity:.8;" aria-hidden="true">
+        <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 4a12 12 0 1 0 8 19 10 10 0 0 1-8-19Z"/></svg>
+      </div>
+      <div class="tryit-text">
+        <p class="hand">try it yourself</p>
+        <h3>Thirty minutes just passed.</h3>
+        <p class="desc">This is Selah's actual pause, the one it shows in your notch: one verse, a breath, then Amen.</p>
+      </div>
+      <div class="arc-wrap" id="arcWrap">
+        <svg viewBox="0 0 120 120">
+          <circle class="arc-track" cx="60" cy="60" r="55"></circle>
+          <circle class="arc-fill" cx="60" cy="60" r="55"></circle>
+        </svg>
+        <div class="arc-center">
+          <button class="arc-btn" id="arcBtn" type="button">Begin</button>
+          <p class="arc-verse" id="arcVerse"></p>
+          <button class="arc-amen" id="arcAmen" type="button">Amen</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="about" id="about">
+    <div class="about-row reveal">
+      <dl class="facts">
+        <div><dt>Practice</dt><dd>Solo</dd></div>
+        <div><dt>Based in</dt><dd>Alberta, Canada</dd></div>
+        <div><dt>Shipped</dt><dd>5 products</dd></div>
+      </dl>
+      <p class="about-para">Four of these share one habit, not one stack: each interrupts a day for a few minutes, not a session. A verse every half hour. A typed line turned into a done thing. A five-minute story. A hymn found by its number. Small, reliable, and then it gets out of the way. The fifth is a bigger swing: real data, for real decisions, built the same way, because nobody else had mapped it yet.</p>
+    </div>
+  </section>
+
+  <section class="contact" id="contact">
+    <div class="reveal">
+      <h2><span class="soft">Building something small</span>that needs to exist?</h2>
+      <form id="contactForm">
+        <input type="email" id="contactEmail" placeholder="your email" required aria-label="Your email" />
+        <button class="submit" type="submit" aria-label="Send">
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+        </button>
+      </form>
+      <p class="hint">Opens your email client with a note already started.</p>
+      <div class="contact-facts">
+        <div><dt>Email</dt><dd><a href="mailto:blaisebagabo@gmail.com">blaisebagabo@gmail.com</a></dd></div>
+        <div><dt>GitHub</dt><dd><a href="https://github.com/blaiseAI" target="_blank" rel="noopener">blaiseAI</a></dd></div>
+        <div><dt>Based in</dt><dd>Alberta, Canada</dd></div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="mark reveal">Blaise</div>
+  <p class="credit reveal">Screens shown above are the real products, captured from their own live pages: <a href="https://web-qa-754d.up.railway.app/" target="_blank" rel="noopener">Family Hub</a>, <a href="https://apps.apple.com/ca/app/sda-kinyarwanda-hymnal/id6449814873" target="_blank" rel="noopener">SDA Kinyarwanda Hymnal</a>, <a href="https://littlelight.kids/" target="_blank" rel="noopener">Little Light</a>, <a href="https://selah.duseb.pro/" target="_blank" rel="noopener">Selah</a>, <a href="https://afrixplorer.com/" target="_blank" rel="noopener">Afrixplorer</a>.</p>
+</footer>
+
+<script>
+(function(){
+  requestAnimationFrame(function(){ requestAnimationFrame(function(){ document.body.classList.add('loaded'); }); });
+
+  var targets = document.querySelectorAll('.reveal');
+  // Safety net: a screenshot/automation tool that renders the full page without
+  // a real scroll event never fires IntersectionObserver, so below-the-fold
+  // .reveal elements would stay at opacity:0 forever. Force them visible after
+  // a short delay regardless, so nothing real visitors scroll to is ever lost.
+  var forced = false;
+  var forceAllVisible = function(){
+    if (forced) return;
+    forced = true;
+    targets.forEach(function(t){ t.classList.add('is-visible'); });
+  };
+  setTimeout(forceAllVisible, 2500);
+
+  if ('IntersectionObserver' in window){
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){
+        if (e.isIntersecting){ e.target.classList.add('is-visible'); io.unobserve(e.target); }
+      });
+    }, {threshold:0.15});
+    targets.forEach(function(t){ io.observe(t); });
+  } else {
+    targets.forEach(function(t){ t.classList.add('is-visible'); });
+  }
+
+  var verses = [
+    "Be still, and know that I am God. · Psalm 46:10",
+    "Pray without ceasing. · 1 Thessalonians 5:17",
+    "The Lord is my shepherd; I shall not want. · Psalm 23:1"
+  ];
+  var arcWrap = document.getElementById('arcWrap');
+  var arcBtn = document.getElementById('arcBtn');
+  var arcAmen = document.getElementById('arcAmen');
+  var arcVerse = document.getElementById('arcVerse');
+  var vi = 0;
+  arcBtn.addEventListener('click', function(){
+    arcVerse.textContent = verses[vi % verses.length];
+    vi++;
+    arcWrap.classList.add('breathing');
+  });
+  arcAmen.addEventListener('click', function(){
+    arcWrap.classList.remove('breathing');
+  });
+
+  document.getElementById('contactForm').addEventListener('submit', function(e){
+    e.preventDefault();
+    var email = document.getElementById('contactEmail').value.trim();
+    var subject = encodeURIComponent('Hi Blaise, from your portfolio');
+    var body = encodeURIComponent('Hi Blaise,\n\nI saw your portfolio' + (email ? (' (reply to me at ' + email + ')') : '') + ' and wanted to talk about...\n');
+    window.location.href = 'mailto:blaisebagabo@gmail.com?subject=' + subject + '&body=' + body;
+  });
+})();
+</script>
+
+</body>
+</html>
