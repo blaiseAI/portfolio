@@ -199,7 +199,7 @@
   /* full-bleed: pixel-dithered sage landscape, copy left, a "what's shipped" note right */
   .hero{
     position:relative;min-height:100svh;
-    padding:clamp(120px,14vh,170px) var(--margin) clamp(170px,24vw,330px);
+    padding:clamp(110px,12vh,150px) var(--margin) clamp(120px,15vw,230px);
     background:var(--bg) var(--hero-img) center bottom/cover no-repeat;
     image-rendering:pixelated;
     display:flex;align-items:center;
@@ -218,20 +218,19 @@
   @media (prefers-reduced-motion: reduce){.hero h1,.hero .sub,.hero .bio{opacity:1;transform:none;}}
 
   /* the note, with the two polaroids tucked behind it */
-  .hero-side{position:relative;padding:64px 0 96px;}
+  .hero-side{position:relative;padding:150px 0 132px;}
   .note{
     position:relative;z-index:3;
     background:var(--card-2);border-radius:22px;padding:26px 28px 14px;
     box-shadow:0 1px 2px rgba(var(--sh),.06),0 30px 60px -30px rgba(var(--sh),.45);
-    transform:rotate(-1deg);
     opacity:0;transition:opacity .6s ease .3s;
   }
-  .note::before{content:"";position:absolute;top:-11px;left:50%;width:84px;height:22px;transform:translateX(-50%) rotate(2deg);background:#f6e3ab;opacity:.9;border-radius:2px;}
+  .note::before{content:"";position:absolute;top:-11px;left:50%;width:84px;height:22px;transform:translateX(-50%) rotate(-2deg);background:#f6e3ab;opacity:.9;border-radius:2px;}
   body.loaded .note{opacity:1;}
   .note .hand{font-family:var(--f-hand);font-size:var(--step-hand-lg);color:var(--muted);margin-bottom:6px;}
   .note ol{list-style:none;}
   .note li + li{border-top:1px solid var(--line);}
-  .note a{display:grid;grid-template-columns:38px 1fr auto;align-items:baseline;gap:10px;padding:13px 0;text-decoration:none;}
+  .note a{display:grid;grid-template-columns:38px 1fr auto;align-items:center;gap:10px;padding:13px 0;text-decoration:none;}
   .note .num{font-size:var(--step-small);color:var(--muted);font-variant-numeric:tabular-nums;}
   .note .nm{font-size:var(--step-body);font-weight:500;transition:transform .2s ease,color .2s ease;}
   .note .pf{font-size:var(--step-small);color:var(--muted);white-space:nowrap;}
@@ -240,24 +239,24 @@
   .polaroid{position:absolute;background:var(--paper);padding:8px 8px 30px;border-radius:3px;width:150px;box-shadow:0 14px 28px -16px rgba(var(--sh),.4);}
   .polaroid img{width:100%;aspect-ratio:4/3;object-fit:cover;border-radius:1px;}
   .polaroid figcaption{font-family:var(--f-hand);font-size:1rem;color:var(--ink);text-align:center;margin-top:6px;line-height:1.1;}
-  .p1{top:0;left:-30px;transform:translateY(16px) rotate(-9deg);z-index:2;opacity:0;transition:opacity .6s ease .45s, transform .6s ease .45s;}
-  .p2{bottom:0;right:-30px;transform:translateY(16px) rotate(7deg);z-index:1;opacity:0;transition:opacity .6s ease .55s, transform .6s ease .55s;}
-  body.loaded .p1{opacity:1;transform:translateY(0) rotate(-9deg);}
-  body.loaded .p2{opacity:1;transform:translateY(0) rotate(7deg);}
+  .p1{top:0;left:-18px;transform:translateY(16px) rotate(-6deg);z-index:2;opacity:0;transition:opacity .6s ease .45s, transform .6s ease .45s;}
+  .p2{bottom:0;right:-14px;transform:translateY(16px) rotate(5deg);z-index:1;opacity:0;transition:opacity .6s ease .55s, transform .6s ease .55s;}
+  body.loaded .p1{opacity:1;transform:translateY(0) rotate(-6deg);}
+  body.loaded .p2{opacity:1;transform:translateY(0) rotate(5deg);}
   @media (prefers-reduced-motion: reduce){
     .note{opacity:1;}
-    .p1{opacity:1;transform:rotate(-9deg);}
-    .p2{opacity:1;transform:rotate(7deg);}
+    .p1{opacity:1;transform:rotate(-6deg);}
+    .p2{opacity:1;transform:rotate(5deg);}
   }
 
   @media (max-width:900px){
     .hero{min-height:0;display:block;}
     .hero-inner{grid-template-columns:1fr;gap:24px;}
-    .hero-side{max-width:460px;}
+    .hero-side{max-width:460px;padding:138px 0 118px;}
     .p1{left:auto;right:6px;}
     .p2{right:auto;left:10px;}
   }
-  @media (max-width:520px){.polaroid{width:118px;}}
+  @media (max-width:520px){.polaroid{width:128px;}.polaroid figcaption{font-size:.82rem;}}
 
   /* ================= SECOND ROW ================= */
   .row2{max-width:1240px;margin:72px auto 0;padding:0 var(--margin);display:grid;grid-template-columns:1.1fr 1fr;gap:28px;}
@@ -438,7 +437,7 @@
       <div class="hero-side">
         <figure class="polaroid p1">
           <img src="assets/img/selah-polaroid.jpg" alt="Selah's hero: a dusk mountain ridge behind the wordmark Selah." />
-          <figcaption>a pause, every<br/>thirty minutes</figcaption>
+          <figcaption>a pause, every 30 min</figcaption>
         </figure>
         <nav class="note" aria-label="What's shipped">
           <p class="hand">what's shipped</p>
