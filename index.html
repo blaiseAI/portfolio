@@ -53,7 +53,6 @@
     --sh:28,36,32;
     --chrome:#f1f2ec;
     --chrome-dot:#d2d6c8;
-    --tryit-bg:#1c2420;
     --mono-bg:#1c2420;
     --underline:#c9bfa9;
     --grain-blend:multiply;
@@ -79,7 +78,6 @@
       --sh:0,0,0;
       --chrome:#2a332d;
       --chrome-dot:#4a544c;
-      --tryit-bg:#212a24;
       --mono-bg:#2a352e;
       --underline:#4f5a50;
       --grain-blend:screen;
@@ -104,7 +102,6 @@
     --sh:0,0,0;
     --chrome:#2a332d;
     --chrome-dot:#4a544c;
-    --tryit-bg:#212a24;
     --mono-bg:#2a352e;
     --underline:#4f5a50;
     --grain-blend:screen;
@@ -338,32 +335,126 @@
     .plate{flex-basis:86%;}
   }
 
-  /* ---- Try it ---- */
-  .tryit{
-    max-width:720px;margin:88px auto 0;background:var(--tryit-bg);color:#f6f7f2;border:1px solid var(--line);
-    padding:48px clamp(24px,4vw,56px);border-radius:20px;position:relative;
-    display:grid;grid-template-columns:1fr auto;gap:36px;align-items:center;
-    transform:rotate(-1.2deg);
+  /* ---- Try it: a strip of a Mac screen; the button runs Selah's real notch over the dimmed page ---- */
+  .pause{
+    position:relative;max-width:1040px;margin:104px auto 0;border-radius:22px;overflow:hidden;isolation:isolate;
+    min-height:clamp(340px,38vw,430px);color:#eef1f6;
+    background:#0b1020 url('assets/img/selah-dusk.jpg') center 30%/cover no-repeat;
+    box-shadow:0 30px 60px -32px rgba(var(--sh),.55);
+    display:flex;align-items:flex-end;
   }
-  .tryit-text p.hand{font-family:var(--f-hand);font-size:var(--step-hand-lg);color:var(--gold);margin-bottom:.3em;}
-  .tryit-text h3{font-size:var(--step-lead);font-weight:600;margin-bottom:.4em;}
-  .tryit-text p.desc{color:#cfc5b2;font-size:var(--step-small);max-width:38ch;}
-  .arc-wrap{position:relative;width:130px;height:130px;flex-shrink:0;}
-  .arc-wrap svg{width:100%;height:100%;transform:rotate(-90deg);}
-  .arc-wrap circle{fill:none;stroke-width:3;}
-  .arc-track{stroke:rgba(255,255,255,.14);}
-  .arc-fill{stroke:var(--gold);stroke-linecap:round;stroke-dasharray:345.6;stroke-dashoffset:345.6;transition:stroke-dashoffset 6s linear;}
-  .arc-wrap.breathing .arc-fill{stroke-dashoffset:0;}
-  .arc-center{position:absolute;inset:0;display:flex;align-items:center;justify-content:center;flex-direction:column;text-align:center;gap:6px;padding:10px;}
-  .arc-verse{font-family:var(--f-hand);font-size:var(--step-hand-sm);line-height:1.25;color:#f6f7f2;display:none;}
-  .arc-wrap.breathing .arc-verse{display:block;}
-  .arc-btn{font-family:var(--f-display);font-weight:500;font-size:var(--step-small);color:#1c2420;background:var(--gold);border-radius:999px;padding:.55em 1.3em;transition:transform .15s ease;}
-  .arc-btn:hover{transform:scale(1.08);}
-  .arc-wrap.breathing .arc-btn{display:none;}
-  .arc-amen{display:none;font-family:var(--f-hand);font-size:var(--step-hand-sm);color:var(--gold);margin-top:4px;}
-  .arc-wrap.breathing .arc-amen{display:inline;}
+  .pause::before{content:"";position:absolute;inset:0;z-index:-1;background:linear-gradient(100deg,rgba(6,9,18,.86) 0%,rgba(6,9,18,.55) 46%,rgba(6,9,18,.05) 100%),linear-gradient(0deg,rgba(6,9,18,.6),transparent 55%);}
+  .pause .mb{
+    position:absolute;inset:0 0 auto;height:28px;display:flex;align-items:center;justify-content:space-between;padding:0 16px;
+    font:12px/1 -apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,sans-serif;color:rgba(238,241,246,.9);
+    background:rgba(10,13,22,.38);backdrop-filter:blur(16px);-webkit-backdrop-filter:blur(16px);
+  }
+  .pause .mb .items{display:flex;gap:18px;}
+  .pause .mb .tray{display:flex;gap:14px;align-items:center;}
+  .pause .mb svg{display:block;}
+  .pause .mini{
+    position:absolute;top:0;left:50%;transform:translateX(-50%);height:28px;width:200px;
+    display:flex;align-items:center;justify-content:space-between;padding:0 10px;
+    background:#050506;border-radius:0 0 11px 11px;font:600 11px/1 -apple-system,BlinkMacSystemFont,system-ui,sans-serif;
+    color:rgba(238,241,246,.85);font-variant-numeric:tabular-nums;
+  }
+  .pause .mini svg{width:12px;height:12px;transform:rotate(-90deg);}
+  .pause-copy{padding:clamp(28px,4vw,52px);max-width:560px;}
+  .pause-copy .hand{font-family:var(--f-hand);font-size:var(--step-hand-lg);color:#e2c48a;}
+  .pause-copy h3{margin-top:6px;font-size:var(--step-heading);font-weight:600;}
+  .pause-copy .desc{margin-top:12px;color:rgba(238,241,246,.78);font-size:var(--step-body);max-width:44ch;}
+  .pause-go{
+    margin-top:24px;display:inline-flex;align-items:center;gap:10px;
+    background:#cfae78;color:#14100a;border-radius:999px;padding:12px 22px 12px 18px;font-weight:600;font-size:var(--step-small);
+    box-shadow:0 0 0 0 rgba(207,174,120,.5);animation:pause-glow 2.8s ease-in-out infinite;transition:transform .15s ease,background .15s ease;
+  }
+  .pause-go:hover{transform:translateY(-1px);background:#dcbd8a;}
+  .pause-go svg{width:16px;height:16px;}
+  @keyframes pause-glow{0%,100%{box-shadow:0 0 0 0 rgba(207,174,120,.0);}50%{box-shadow:0 0 0 8px rgba(207,174,120,.16);}}
+  .selah-hint .touch{display:none;}
+  @media (hover:none){.selah-hint .touch{display:inline;}.selah-hint .keys{display:none;}}
+  @media (max-width:640px){.pause .mb .items span:nth-child(n+2){display:none;}.pause .mb .tray svg:first-child{display:none;}.pause .mini{width:150px;}.pause-copy{padding-top:64px;}.pause::before{background:linear-gradient(0deg,rgba(6,9,18,.9) 20%,rgba(6,9,18,.35));}}
 
-  @media (max-width:700px){.tryit{grid-template-columns:1fr;text-align:center;transform:none;}.arc-wrap{margin:0 auto;}}
+  /* the real thing: lights down, notch drops from the top of the window */
+  .selah-dim{
+    position:fixed;inset:0;z-index:90;background:rgba(2,3,5,.93);
+    backdrop-filter:blur(6px) saturate(.4);-webkit-backdrop-filter:blur(6px) saturate(.4);
+    opacity:0;transition:opacity .9s ease;
+  }
+  .selah-on .selah-dim{opacity:1;}
+  .selah-hint{position:fixed;left:0;right:0;bottom:28px;z-index:91;text-align:center;font:13px/1.4 -apple-system,BlinkMacSystemFont,system-ui,sans-serif;color:rgba(238,241,246,.5);opacity:0;transition:opacity .9s ease .6s;pointer-events:none;}
+  .selah-on .selah-hint{opacity:1;}
+  .island{
+    --pt:min(1px,calc((100vw - 16px) / 382));
+    --island:#050506;--fg:#eef1f6;--accent:#cfae78;
+    --w:185;--h:32;--r:9;
+    position:fixed;top:0;left:50%;z-index:100;
+    width:calc(var(--w) * var(--pt));height:calc(var(--h) * var(--pt));transform:translateX(-50%);
+    border-radius:0 0 calc(var(--r) * var(--pt)) calc(var(--r) * var(--pt));
+    background:var(--island);color:var(--fg);
+    font-family:-apple-system,BlinkMacSystemFont,'SF Pro Text',system-ui,sans-serif;
+    box-shadow:0 calc(10 * var(--pt)) calc(28 * var(--pt)) rgba(0,0,0,.45);
+    opacity:0;
+    transition:width .6s cubic-bezier(.22,1,.36,1),height .6s cubic-bezier(.22,1,.36,1),border-radius .6s cubic-bezier(.22,1,.36,1),opacity .4s ease;
+  }
+  .island[hidden]{display:none;}
+  .island::before,.island::after{content:"";position:absolute;top:0;width:calc(6 * var(--pt));height:calc(6 * var(--pt));background:radial-gradient(circle at var(--cx) 100%,transparent calc(6 * var(--pt) - .5px),var(--island) calc(6 * var(--pt)));}
+  .island::before{left:calc(-6 * var(--pt));--cx:0;}
+  .island::after{right:calc(-6 * var(--pt));--cx:100%;}
+  .island:not([data-state="off"]){opacity:1;}
+  .island[data-state="nudge"],.island[data-state="snooze"]{--w:317;--r:10;}
+  .island[data-state="due"]{--w:382;--h:calc(32 + var(--dh,150));--r:26;}
+  .island:is([data-state="praying"],[data-state="amen"]){--w:382;--h:156;--r:26;}
+  .island .panel{display:none;position:absolute;inset:0;animation:panel-in .5s .12s cubic-bezier(.22,1,.36,1) both;}
+  @keyframes panel-in{from{opacity:0;transform:translateY(-4px) scale(.98);}to{opacity:1;transform:none;}}
+  .island[data-state="nudge"] .p-nudge,.island[data-state="snooze"] .p-nudge,.island[data-state="due"] .p-due{display:flex;}
+  .island[data-state="praying"] .p-pray,.island[data-state="amen"] .p-amen{display:flex;}
+  .island .muted{color:rgba(238,241,246,.55);}
+  .island .p-nudge{bottom:auto;height:calc(32 * var(--pt));align-items:center;justify-content:space-between;padding:0 calc(12 * var(--pt));}
+  .p-nudge .sel{font-family:ui-serif,'New York','Iowan Old Style',Georgia,serif;font-style:italic;font-size:calc(13 * var(--pt));color:rgba(238,241,246,.75);}
+  .p-nudge .right{display:inline-flex;align-items:center;gap:calc(5 * var(--pt));color:var(--accent);font-size:calc(12 * var(--pt));font-weight:600;font-variant-numeric:tabular-nums;}
+  .i-ring{width:calc(12 * var(--pt));height:calc(12 * var(--pt));transform:rotate(-90deg);}
+  .i-ring circle,.pray-ring circle{fill:none;stroke-width:3;}
+  .i-ring .track{stroke:currentColor;opacity:.25;}
+  .i-ring .arc{stroke:currentColor;stroke-linecap:round;}
+  .island .p-due{flex-direction:column;align-items:center;justify-content:center;text-align:center;padding:calc(44 * var(--pt)) calc(20 * var(--pt)) calc(14 * var(--pt));animation:none;}
+  .p-due > *{animation:panel-in .5s cubic-bezier(.22,1,.36,1) both;}
+  .p-due > .kicker{animation-delay:.24s;}
+  .p-due > .verse{animation-delay:.32s;}
+  .p-due > .cite{animation-delay:.4s;}
+  .p-due > .i-actions{animation-delay:.52s;}
+  .island .kicker{font-size:calc(11 * var(--pt));font-weight:600;letter-spacing:.14em;text-transform:uppercase;}
+  .island .verse,.verse-measure{margin:calc(8 * var(--pt)) 0 calc(5 * var(--pt));font-family:ui-serif,'New York','Iowan Old Style',Georgia,serif;font-weight:500;font-size:calc(17 * var(--pt));line-height:calc(22 * var(--pt));color:var(--fg);text-wrap:balance;}
+  .verse-measure{position:fixed;visibility:hidden;pointer-events:none;top:0;left:0;width:calc(342 * var(--pt));--pt:min(1px,calc((100vw - 16px) / 382));}
+  .island .cite{font-size:calc(10.5 * var(--pt));font-weight:500;letter-spacing:.1em;text-transform:uppercase;}
+  .i-actions{display:flex;gap:calc(8 * var(--pt));margin-top:calc(12 * var(--pt));}
+  .i-btn{position:relative;height:calc(26 * var(--pt));padding:0 calc(14 * var(--pt));border-radius:999px;font-size:calc(12 * var(--pt));font-weight:600;font-family:inherit;transition:background .18s;}
+  .i-btn::after{content:"";position:absolute;inset:-9px -4px;}
+  .i-begin{background:var(--accent);color:#000;}
+  .i-begin:hover{background:#dcbd8a;}
+  .i-later,.i-amen{background:#1c1d20;color:var(--fg);box-shadow:inset 0 0 0 .5px rgba(238,241,246,.3);}
+  .i-later:hover,.i-amen:hover{background:#2a2b2f;}
+  .i-amen{opacity:0;pointer-events:none;transition:opacity .6s ease,background .18s;}
+  .island.can-amen .i-amen{opacity:1;pointer-events:auto;}
+  .island .p-pray,.island .p-amen{flex-direction:column;align-items:center;justify-content:center;padding-top:calc(30 * var(--pt));}
+  .p-pray{gap:calc(10 * var(--pt));}
+  .pray-ring{width:calc(40 * var(--pt));height:calc(40 * var(--pt));animation:travel 8s linear infinite;}
+  .pray-ring .track{stroke:rgba(238,241,246,.25);}
+  .pray-ring .arc{stroke:var(--accent);stroke-linecap:round;stroke-dasharray:8 100;animation:arc-breathe 8s ease-in-out infinite;}
+  @keyframes travel{from{transform:rotate(-90deg);}to{transform:rotate(270deg);}}
+  @keyframes arc-breathe{0%,100%{stroke-dasharray:8 100;}50%{stroke-dasharray:50 100;}}
+  .pray-cue{font-family:ui-serif,'New York','Iowan Old Style',Georgia,serif;font-style:italic;font-size:calc(13 * var(--pt));color:rgba(238,241,246,.6);height:calc(16 * var(--pt));}
+  .p-amen{gap:calc(2 * var(--pt));}
+  .amen-check{width:calc(28 * var(--pt));height:calc(28 * var(--pt));color:var(--accent);margin-bottom:calc(6 * var(--pt));}
+  .amen-word{font-size:calc(15 * var(--pt));font-weight:600;}
+  .amen-meta{font-size:calc(11 * var(--pt));}
+  @media (prefers-reduced-motion: reduce){
+    .pause-go{animation:none;}
+    .island,.island .panel,.p-due > *{transition:none;animation:none;}
+    .pray-ring,.pray-ring .arc{animation:none;}
+    .pray-ring{transform:rotate(-90deg);}
+    .pray-ring .arc{stroke-dasharray:30 100;}
+  }
 
   /* ================= ABOUT FACTS ================= */
   .about{max-width:1240px;margin:104px auto 0;padding:0 var(--margin);}
@@ -591,25 +682,27 @@
       </article>
     </div>
 
-    <div class="tryit reveal">
-      <div class="doodle" style="width:34px;height:34px;top:-14px;left:-10px;color:var(--gold);opacity:.8;" aria-hidden="true">
-        <svg viewBox="0 0 34 34" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"><path d="M22 4a12 12 0 1 0 8 19 10 10 0 0 1-8-19Z"/></svg>
-      </div>
-      <div class="tryit-text">
-        <p class="hand">try it yourself</p>
-        <h3>Thirty minutes just passed.</h3>
-        <p class="desc">This is Selah's actual pause, the one it shows in your notch: one verse, a breath, then Amen.</p>
-      </div>
-      <div class="arc-wrap" id="arcWrap">
-        <svg viewBox="0 0 120 120">
-          <circle class="arc-track" cx="60" cy="60" r="55"></circle>
-          <circle class="arc-fill" cx="60" cy="60" r="55"></circle>
-        </svg>
-        <div class="arc-center">
-          <button class="arc-btn" id="arcBtn" type="button">Begin</button>
-          <p class="arc-verse" id="arcVerse"></p>
-          <button class="arc-amen" id="arcAmen" type="button">Amen</button>
+    <div class="pause reveal">
+      <div class="mb" aria-hidden="true">
+        <div class="items"><span><b>Finder</b></span><span>File</span><span>Edit</span><span>View</span><span>Go</span><span>Window</span></div>
+        <div class="tray">
+          <svg width="20" height="11" viewBox="0 0 30 16" fill="#cfae78"><path d="M8 0h5v16H8A8 8 0 0 1 8 0z"/><path d="M17 0h5a8 8 0 0 1 0 16h-5z"/></svg>
+          <svg width="16" height="13" viewBox="0 0 16 13" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"><path d="M1.5 4.6a9.2 9.2 0 0 1 13 0M3.9 7.2a5.8 5.8 0 0 1 8.2 0M6.3 9.8a2.4 2.4 0 0 1 3.4 0"/></svg>
+          <svg width="25" height="12" viewBox="0 0 25 12" fill="none" stroke="currentColor" stroke-width="1"><rect x=".5" y=".5" width="21" height="11" rx="3"/><rect x="2.5" y="2.5" width="14" height="7" rx="1.5" fill="currentColor" stroke="none"/><path d="M23.5 4.5v3" stroke-linecap="round" stroke-width="1.4"/></svg>
         </div>
+      </div>
+      <div class="mini" aria-hidden="true">
+        <svg viewBox="0 0 20 20"><circle cx="10" cy="10" r="8" pathLength="100" fill="none" stroke="currentColor" stroke-opacity=".25" stroke-width="3"/><circle cx="10" cy="10" r="8" pathLength="100" fill="none" stroke="#cfae78" stroke-width="3" stroke-linecap="round" stroke-dasharray="4 100"/></svg>
+        <span>1</span>
+      </div>
+      <div class="pause-copy">
+        <p class="hand">try it yourself</p>
+        <h3>Your thirty minutes are almost up.</h3>
+        <p class="desc">This is Selah's real pause, the one that drops from your Mac's notch: one verse, one breath, then Amen. Turn the lights down and see it here.</p>
+        <button class="pause-go" id="pauseGo" type="button">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M21 12.8A9 9 0 1 1 11.2 3a7 7 0 0 0 9.8 9.8z"/></svg>
+          Dim the lights
+        </button>
       </div>
     </div>
   </section>
@@ -650,6 +743,35 @@
   <p class="credit reveal">Screens shown above are the real products, captured from their own live pages: <a href="https://web-qa-754d.up.railway.app/" target="_blank" rel="noopener">Family Hub</a>, <a href="https://sda-kinyarwanda-hymnal.vercel.app/" target="_blank" rel="noopener">SDA Kinyarwanda Hymnal</a>, <a href="https://littlelight.kids/" target="_blank" rel="noopener">Little Light</a>, <a href="https://selah.duseb.pro/" target="_blank" rel="noopener">Selah</a>, <a href="https://afrixplorer.com/" target="_blank" rel="noopener">Afrixplorer</a>.</p>
 </footer>
 
+<div class="selah-dim" id="selahDim" hidden></div>
+<p class="selah-hint" id="selahHint" hidden><span class="keys">Press Esc to bring the lights back</span><span class="touch">Tap anywhere to bring the lights back</span></p>
+<div class="island" id="selahIsland" data-state="off" role="dialog" aria-modal="true" aria-label="Selah, a prayer pause" hidden>
+  <div class="panel p-nudge">
+    <span class="sel">Selah</span>
+    <span class="right"><svg class="i-ring" viewBox="0 0 20 20" aria-hidden="true"><circle class="track" cx="10" cy="10" r="8" pathLength="100"/><circle class="arc" cx="10" cy="10" r="8" pathLength="100" stroke-dasharray="4 100" id="nudgeArc"/></svg><span id="nudgeText">now</span></span>
+  </div>
+  <div class="panel p-due">
+    <p class="kicker muted">Time for prayer</p>
+    <p class="verse" id="islandVerse"></p>
+    <p class="cite muted" id="islandCite"></p>
+    <div class="i-actions">
+      <button class="i-btn i-begin" id="islandBegin" type="button">Begin</button>
+      <button class="i-btn i-later" id="islandLater" type="button">In 5 min</button>
+    </div>
+  </div>
+  <div class="panel p-pray">
+    <svg class="pray-ring" viewBox="0 0 44 44" aria-hidden="true"><circle class="track" cx="22" cy="22" r="19" pathLength="100"/><circle class="arc" cx="22" cy="22" r="19" pathLength="100"/></svg>
+    <p class="pray-cue" id="prayCue" aria-live="polite">breathe in</p>
+    <button class="i-btn i-amen" id="islandAmen" type="button">Amen</button>
+  </div>
+  <div class="panel p-amen">
+    <svg class="amen-check" viewBox="0 0 28 28" fill="none" stroke="currentColor" aria-hidden="true"><circle cx="14" cy="14" r="12.5" stroke-width="1.8"/><path d="M8.8 14.4l3.4 3.4 7-7.4" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"/></svg>
+    <p class="amen-word">Amen</p>
+    <p class="amen-meta muted">See you in thirty minutes</p>
+  </div>
+</div>
+<p class="verse-measure" id="verseMeasure" aria-hidden="true"></p>
+
 <script>
 (function(){
   requestAnimationFrame(function(){ requestAnimationFrame(function(){ document.body.classList.add('loaded'); }); });
@@ -678,23 +800,94 @@
     targets.forEach(function(t){ t.classList.add('is-visible'); });
   }
 
+  // Selah's pause, for real: dim the page, drop the notch, one verse, one breath, Amen
   var verses = [
-    "Be still, and know that I am God. · Psalm 46:10",
-    "Pray without ceasing. · 1 Thessalonians 5:17",
-    "The Lord is my shepherd; I shall not want. · Psalm 23:1"
+    ['“Be still, and know that I am God.”', 'Psalm 46:10'],
+    ['“Pray without ceasing.”', '1 Thessalonians 5:17'],
+    ['“The Lord is my shepherd; I shall not want.”', 'Psalm 23:1']
   ];
-  var arcWrap = document.getElementById('arcWrap');
-  var arcBtn = document.getElementById('arcBtn');
-  var arcAmen = document.getElementById('arcAmen');
-  var arcVerse = document.getElementById('arcVerse');
   var vi = 0;
-  arcBtn.addEventListener('click', function(){
-    arcVerse.textContent = verses[vi % verses.length];
-    vi++;
-    arcWrap.classList.add('breathing');
+  var island = document.getElementById('selahIsland');
+  var dim = document.getElementById('selahDim');
+  var hint = document.getElementById('selahHint');
+  var pauseGo = document.getElementById('pauseGo');
+  var cue = document.getElementById('prayCue');
+  var measure = document.getElementById('verseMeasure');
+  var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+  var timers = [];
+  var later = function(fn, ms){ timers.push(setTimeout(fn, reduce ? Math.min(ms, 300) : ms)); };
+  var clearTimers = function(){ timers.forEach(clearTimeout); timers = []; };
+  var setState = function(st){ island.setAttribute('data-state', st); };
+  var outside = [document.querySelector('.navwrap'), document.querySelector('main'), document.querySelector('footer')];
+  var open = false;
+
+  var openPause = function(){
+    if (open) return;
+    open = true; clearTimers();
+    var v = verses[vi++ % verses.length];
+    document.getElementById('islandVerse').textContent = v[0];
+    document.getElementById('islandCite').textContent = v[1];
+    measure.textContent = v[0];
+    var lines = Math.max(1, Math.round(measure.getBoundingClientRect().height / parseFloat(getComputedStyle(measure).lineHeight)));
+    island.style.setProperty('--dh', 128 + lines * 22);
+    island.classList.remove('can-amen');
+    dim.hidden = false; hint.hidden = false; island.hidden = false;
+    outside.forEach(function(el){ if (el) el.inert = true; });
+    void island.offsetWidth;
+    document.body.classList.add('selah-on');
+    later(function(){ setState('closed'); }, 700);
+    later(function(){ document.getElementById('nudgeText').textContent = 'now'; setState('nudge'); }, 1500);
+    later(function(){ setState('due'); }, 2900);
+    later(function(){ document.getElementById('islandBegin').focus({preventScroll:true}); }, 3500);
+  };
+
+  var closePause = function(){
+    if (!open) return;
+    clearTimers();
+    island.classList.remove('can-amen');
+    setState('closed');
+    later(function(){ setState('off'); document.body.classList.remove('selah-on'); }, 650);
+    later(function(){
+      dim.hidden = true; hint.hidden = true; island.hidden = true; open = false;
+      outside.forEach(function(el){ if (el) el.inert = false; });
+      pauseGo.focus({preventScroll:true});
+    }, 1600);
+  };
+
+  pauseGo.addEventListener('click', openPause);
+  document.getElementById('islandBegin').addEventListener('click', function(){
+    clearTimers();
+    setState('praying');
+    cue.textContent = 'breathe in';
+    // the arc's 8s cycle: 4s in, 4s out; Amen arrives after one full breath
+    later(function(){ cue.textContent = 'breathe out'; }, 4000);
+    later(function(){ cue.textContent = 'breathe in'; island.classList.add('can-amen'); document.getElementById('islandAmen').focus({preventScroll:true}); }, 8000);
+    later(function(){ cue.textContent = 'breathe out'; }, 12000);
+    later(function(){ cue.textContent = 'breathe in'; }, 16000);
   });
-  arcAmen.addEventListener('click', function(){
-    arcWrap.classList.remove('breathing');
+  document.getElementById('islandAmen').addEventListener('click', function(){
+    clearTimers();
+    setState('amen');
+    later(closePause, 2200);
+  });
+  document.getElementById('islandLater').addEventListener('click', function(){
+    clearTimers();
+    document.getElementById('nudgeText').textContent = '5 min';
+    document.getElementById('nudgeArc').setAttribute('stroke-dasharray', '17 100');
+    setState('snooze');
+    later(function(){ document.getElementById('nudgeArc').setAttribute('stroke-dasharray', '4 100'); closePause(); }, 1800);
+  });
+  dim.addEventListener('click', closePause);
+  document.addEventListener('keydown', function(e){
+    if (!open) return;
+    if (e.key === 'Escape') { closePause(); return; }
+    if (e.key === 'Tab') {
+      var btns = [].slice.call(island.querySelectorAll('.panel button')).filter(function(b){ return b.offsetParent && getComputedStyle(b).pointerEvents !== 'none'; });
+      if (!btns.length) { e.preventDefault(); return; }
+      var i = btns.indexOf(document.activeElement);
+      e.preventDefault();
+      btns[(i + (e.shiftKey ? -1 : 1) + btns.length) % btns.length].focus();
+    }
   });
 
   // theme toggle: an explicit choice is remembered; otherwise follow the system
